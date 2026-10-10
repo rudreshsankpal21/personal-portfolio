@@ -6,7 +6,7 @@ import "./Hero.css";
 
 gsap.registerPlugin(useGSAP);
 
-const NAV = ["About", "Skills", "Projects", "Experience", "Contact"];
+const NAV = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
 
 const Arrow = ({ size = 13 }) => (
   <svg
@@ -173,11 +173,27 @@ const JsIcon = () => (
     <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 5l-4 14" />
   </svg>
 );
+const ExpressIcon = () => (
+  <svg
+    width="25"
+    height="25"
+    viewBox="0 0 25 25"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.35"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-label="Express.js"
+  >
+    <rect x="1.5" y="1.5" width="22" height="22" rx="4" />
+    <path d="M6.5 9h5M6.5 12.5h7M6.5 16h5M16.5 9l2.5 3.5-2.5 3.5" />
+  </svg>
+);
 
 const TECH = [
   { name: "React", icon: <ReactIcon />, cls: "" },
   { name: "Node.js", icon: <NodeIcon />, cls: "" },
-  { name: "express", icon: null, cls: "express" },
+  { name: "express", icon: <ExpressIcon />, cls: "express" },
   { name: "MongoDB", icon: <MongoIcon />, cls: "" },
   { name: "JavaScript", icon: <JsIcon />, cls: "" },
 ];
@@ -245,7 +261,7 @@ export default function Hero() {
               <a
                 key={l}
                 href={`#${l.toLowerCase()}`}
-                className={`pf-links__item ${i === 0 ? "is-active" : ""}`}
+                className="pf-links__item"
               >
                 {l}
               </a>
@@ -259,7 +275,7 @@ export default function Hero() {
       </header>
 
       {/* ───── HERO ───── */}
-      <section className="pf-hero" id="about">
+      <section className="pf-hero" id="home">
         <div className="pf-hero__grid" aria-hidden="true" />
 
         <div className="pf-hero__bg" aria-hidden="true">
