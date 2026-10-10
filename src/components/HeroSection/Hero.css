@@ -1,0 +1,460 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap");
+
+.pf {
+  --bg: #0a0b10;
+  --bg-2: #0d0e14;
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #f4f5f8;
+  --muted: #9aa0ae;
+  --dim: #6b7080;
+  --blue: #3b82f6;
+  --green: #22c55e;
+  --nav-h: 82px;
+  --strip-h: 96px;
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pf *,
+.pf *::before,
+.pf *::after {
+  box-sizing: border-box;
+}
+.pf :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+.pf ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ───────── NAVBAR ───────── */
+.pf-nav {
+  position: relative;
+  z-index: 20;
+  height: var(--nav-h);
+  border-bottom: 1px solid var(--line);
+  background: rgba(10, 11, 16, 0.55);
+  backdrop-filter: blur(6px);
+  will-change: transform, opacity;
+}
+.pf-nav__inner {
+  max-width: 1320px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pf-logo {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+}
+.pf-logo__dot {
+  color: var(--blue);
+}
+.pf-logo__code {
+  margin-left: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.pf-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+}
+.pf-links__item {
+  position: relative;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+.pf-links__item:hover,
+.pf-links__item.is-active {
+  color: var(--text);
+}
+.pf-links__item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--blue);
+  transform: translateX(-50%);
+}
+.pf-talk {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  padding: 0 20px 0 11px;
+  width: 117px;
+  justify-content: space-between;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.pf-talk:hover {
+  border-color: var(--blue);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+/* ───────── HERO ───────── */
+.pf-hero {
+  position: relative;
+  flex: 1;
+  min-height: 600px;
+  will-change: transform, opacity;
+}
+.pf-hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 90px 90px;
+  background-position: 0 0;
+  -webkit-mask-image: linear-gradient(to right, #000 25%, transparent 60%);
+  mask-image: linear-gradient(to right, #000 25%, transparent 60%);
+}
+
+/* background image (DitherVeil) */
+.pf-hero__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 47%;
+  z-index: 0;
+}
+/* override the component's default sizing so it fills this wrapper */
+.pf-hero__bg .dither-veil {
+  position: absolute;
+  inset: 0;
+  width: 70%;
+  height: 100%;
+  margin-left: 10%;
+}
+.pf-hero__fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 14%),
+    linear-gradient(to top, var(--bg) 0%, transparent 12%);
+}
+
+/* content */
+.pf-hero__content {
+  position: relative;
+  z-index: 5;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 92px 24px 0 78px;
+  pointer-events: none; /* let the dither effect react underneath */
+}
+.pf-hero__content a {
+  pointer-events: auto;
+}
+
+.pf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 29px;
+  padding: 0 14px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 1.6px;
+  color: var(--muted);
+}
+.pf-badge__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+.pf-hey {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 41px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+.pf-hey__spark {
+  color: var(--blue);
+}
+
+.pf-title {
+  margin: 20px 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: clamp(54px, 5.3vw, 82px);
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+  color: var(--text);
+}
+.pf-title__accent {
+  color: var(--blue);
+}
+
+.pf-lead {
+  margin: 38px 0 0;
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.pf-lead b {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.pf-cta {
+  display: flex;
+  gap: 14px;
+  margin-top: 33px;
+}
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  height: 47px;
+  padding: 0 22px;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-radius: 3px;
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    border-color 0.2s;
+}
+.pf-btn:hover {
+  transform: translateY(-2px);
+}
+.pf-btn--primary {
+  background: var(--blue);
+  color: #fff;
+  min-width: 177px;
+}
+.pf-btn--primary:hover {
+  background: #4f8ff7;
+}
+.pf-btn--ghost {
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.35);
+  min-width: 152px;
+}
+.pf-btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.pf-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.pf-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.pf-meta__sep {
+  width: 1px;
+  height: 11px;
+  background: var(--line);
+}
+
+/* foot row inside hero */
+.pf-hero__foot {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1320px;
+  padding: 0 0 0 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.4px;
+  color: var(--dim);
+}
+.pf-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0 8px 12px;
+  border-left: 1px solid var(--line);
+}
+.pf-tagline {
+  position: absolute;
+  left: 43%;
+}
+.pf-social {
+  display: flex;
+  gap: 23px;
+  margin-right: 82px;
+}
+.pf-social a {
+  color: var(--muted);
+  display: inline-flex;
+  transition: color 0.2s;
+}
+.pf-social a:hover {
+  color: var(--blue);
+}
+
+/* ───────── TECH STRIP ───────── */
+.pf-tech {
+  position: relative;
+  z-index: 10;
+  height: var(--strip-h);
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.pf-tech__inner {
+  max-width: 1320px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 0 0 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pf-tech__label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.6px;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.pf-tech__list {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  margin-right: 82px;
+}
+.pf-tech__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.pf-tech__item:hover {
+  color: var(--text);
+}
+.pf-tech__item.express {
+  font-size: 23px;
+  letter-spacing: 0.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf *,
+  .pf *::before,
+  .pf *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 1400px) {
+  .pf-nav__inner {
+    padding: 0 24px;
+  }
+}
+@media (max-width: 1100px) {
+  .pf-links {
+    display: none;
+  }
+  .pf-hero__bg {
+    width: 100%;
+    opacity: 0.45;
+  }
+  .pf-hero__content {
+    padding: 70px 24px 0;
+  }
+  .pf-hero__foot,
+  .pf-tech__inner {
+    padding: 0 24px;
+  }
+  .pf-tagline {
+    display: none;
+  }
+  .pf-tech__inner {
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .pf-tech__list {
+    gap: 28px;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pf-tech {
+    height: auto;
+    padding: 20px 0;
+  }
+}
+@media (max-width: 600px) {
+  .pf-title {
+    font-size: 44px;
+    letter-spacing: -1px;
+  }
+  .pf-social {
+    margin-right: 0;
+  }
+  .pf-scroll {
+    display: none;
+  }
+  .pf-hero__foot {
+    justify-content: flex-end;
+  }
+}
