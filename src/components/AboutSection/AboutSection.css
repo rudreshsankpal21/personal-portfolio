@@ -11,9 +11,9 @@
 }
 
 .about-section__inner {
-  width: min(1600px, calc(100% - 2px));
+  width: min(1600px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 54px 0 104px;
+  padding: 36px 0 48px;
 }
 
 .about-section__topline,
@@ -25,7 +25,7 @@
 
 .about-section__topline {
   align-items: center;
-  margin-bottom: 46px;
+  margin-bottom: 26px;
 }
 
 .about-section__eyebrow,
@@ -42,7 +42,7 @@
 }
 
 .about-section__story {
-  gap: 72px;
+  gap: 42px;
 }
 
 .about-section__headline {
@@ -63,12 +63,12 @@
 .about-section__principles {
   position: relative;
   display: inline-block;
-  margin-top: 42px;
+  margin-top: 24px;
   padding: 3px 0 4px 17px;
   border-left: 1px solid var(--about-blue);
   color: var(--about-muted);
-  font-size: 12px;
-  line-height: 1.8;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 .about-section__principles p {
@@ -90,8 +90,8 @@
   max-width: 500px;
   margin: -3px 0 24px;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 17px;
-  line-height: 1.8;
+  font-size: 20px;
+  line-height: 1.55;
 }
 .about-section__manifesto em {
   color: var(--about-blue);
@@ -100,19 +100,19 @@
 
 .about-section__copy {
   color: var(--about-muted);
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 300;
-  line-height: 2.05;
+  line-height: 1.75;
 }
 .about-section__copy p {
-  margin: 0 0 17px;
+  margin: 0 0 12px;
 }
 .about-section__journey {
   display: inline-flex;
   gap: 27px;
   margin-top: 14px;
   color: var(--about-text);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
   transition:
@@ -130,9 +130,9 @@
 
 .about-section__stats {
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 58px;
+  margin-top: 32px;
   border-top: 1px solid var(--about-line);
-  padding-top: 34px;
+  padding-top: 22px;
 }
 .about-section__stat,
 .about-section__signature {
@@ -158,7 +158,7 @@
 .about-section__stat-label {
   margin: 16px 0 0;
   color: var(--about-muted);
-  font-size: 9px;
+  font-size: 11px;
 }
 .about-section__signature {
   display: flex;
@@ -175,7 +175,7 @@
 .about-section__signature p {
   margin: 0;
   color: var(--about-muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 2;
 }
 
