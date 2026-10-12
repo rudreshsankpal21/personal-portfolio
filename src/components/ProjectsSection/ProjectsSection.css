@@ -10,9 +10,9 @@
   scroll-margin-top: 24px;
 }
 .projects__inner {
-  width: min(1400px, calc(100% - 108px));
+  width: min(1600px, calc(100% - 48px));
   margin: auto;
-  padding: 91px 0 96px;
+  padding: 42px 0 48px;
 }
 .projects__topline {
   display: flex;
@@ -29,7 +29,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: end;
-  margin: 49px 0 48px;
+  margin: 28px 0 30px;
 }
 .projects__headline {
   display: flex;
@@ -49,19 +49,19 @@
   width: 284px;
   margin: 0 0 4px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 300;
-  line-height: 1.85;
+  line-height: 1.65;
 }
 .projects__work {
   display: flex;
   flex-direction: column;
-  gap: 39px;
+  gap: 26px;
 }
 .projects__preview {
   position: relative;
   display: block;
-  height: 340px;
+  height: clamp(360px, 32vw, 500px);
   overflow: hidden;
   border-radius: 6px;
   color: inherit;
@@ -210,13 +210,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  padding: 24px 2px 0;
+  padding: 16px 2px 0;
 }
 .projects__type {
   margin: 0 0 10px;
   color: var(--muted);
   font-family: "JetBrains Mono", monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1.15px;
 }
 .projects h3 {
@@ -238,9 +238,9 @@
 .projects__detail > p {
   margin: 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.65;
 }
 .projects__detail ul {
   display: flex;
@@ -264,7 +264,7 @@
   gap: 28px;
 }
 .projects__grid .projects__preview {
-  height: 340px;
+  height: clamp(300px, 25vw, 420px);
 }
 .projects__grid .projects__info {
   display: block;
@@ -277,9 +277,9 @@
   align-items: center;
   justify-content: center;
   gap: 25px;
-  margin-top: 48px;
+  margin-top: 26px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   text-decoration: none;
   transition:
     color 0.2s,
