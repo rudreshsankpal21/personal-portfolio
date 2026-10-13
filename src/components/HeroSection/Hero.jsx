@@ -192,10 +192,11 @@ const ExpressIcon = () => (
 
 const TECH = [
   { name: "React", icon: <ReactIcon />, cls: "" },
+  { name: "React-Native", icon: <ReactIcon />, cls: "" },
   { name: "Node.js", icon: <NodeIcon />, cls: "" },
-  { name: "express", icon: <ExpressIcon />, cls: "express" },
+  { name: "Express", icon: <ExpressIcon />, cls: "express" },
   { name: "MongoDB", icon: <MongoIcon />, cls: "" },
-  { name: "JavaScript", icon: <JsIcon />, cls: "" },
+  // { name: "JavaScript", icon: <JsIcon />, cls: "" },
 ];
 
 export default function Hero() {
@@ -381,7 +382,7 @@ export default function Hero() {
       {/* ───── TECH STRIP ───── */}
       <section className="pf-tech">
         <div className="pf-tech__inner">
-          <span className="pf-tech__label">BUILT WITH INTENTION</span>
+          {/* <span className="pf-tech__label">BUILT WITH INTENTION</span> */}
           <ul className="pf-tech__list">
             {TECH.map((t) => (
               <li key={t.name} className={`pf-tech__item ${t.cls}`}>
