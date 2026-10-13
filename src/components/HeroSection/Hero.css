@@ -312,7 +312,7 @@
   transform: translateX(-50%);
   width: 100%;
   max-width: 1320px;
-  padding: 0 0 0 78px;
+  padding: 20px 0 30px 78px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -353,6 +353,7 @@
   height: var(--strip-h);
   border-top: 1px solid var(--line);
   background: var(--bg-2);
+  margin-top: 40px;
 }
 .pf-tech__inner {
   max-width: 1320px;
@@ -379,7 +380,8 @@
 .pf-tech__item {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 20px;
   font-family: "Space Grotesk", sans-serif;
   font-size: 20px;
   color: var(--muted);
