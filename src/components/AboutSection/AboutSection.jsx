@@ -9,6 +9,7 @@ const STATS = [
   { value: "8", suffix: "+", label: "Projects brought to life" },
   { value: "2", suffix: "+", label: "Years of building" },
   { value: "15", suffix: "+", label: "Technologies explored" },
+  { value: "1", suffix: "+", label: "Years of professional experience" },
 ];
 
 export default function AboutSection() {
@@ -69,7 +70,7 @@ export default function AboutSection() {
               <p className="about-section__stat-label">{stat.label}</p>
             </div>
           ))}
-          <div className="about-section__signature">
+          {/* <div className="about-section__signature">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m9 18-6-6 6-6M15 6l6 6-6 6M14 4l-4 16" />
             </svg>
@@ -78,7 +79,7 @@ export default function AboutSection() {
               <br />
               Intentionally creative.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
