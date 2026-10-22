@@ -10,34 +10,37 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const PROJECTS = [
   {
     number: "01",
-    type: "PRODUCTIVITY PLATFORM",
-    name: "Orbit.",
+    type: "MODERN WEB DEV ",
+    name: "3D Animated website.",
     description:
-      "A calmer way to manage the chaos. A collaborative workspace that brings projects, tasks, and teams into one beautifully simple place.",
-    stack: ["React", "Node.js", "MongoDB", "Socket.io"],
+      "Modern Web Development ",
+    stack: ["HTML","CSS","GSAP","LOCOMOTIVE","THREE.JS"],
     tone: "blue",
     featured: true,
-    image: null,
+    image: "src/assets/3dhero.png",
+    link:"https://3d-animation-rudresh.netlify.app/"
   },
   {
     number: "02",
-    type: "INTERACTIVE FORM BUILDER",
-    name: "Formly.",
-    description:
-      "Turning ordinary forms into meaningful conversations. A dynamic form builder with conditional logic and real-time insights.",
-    stack: ["React", "Express", "MongoDB"],
-    tone: "lilac",
-    image: null,
-  },
-  {
-    number: "03",
     type: "E-COMMERCE EXPERIENCE",
-    name: "Mono.",
+    name: "THIRUMALA CASTINGS",
     description:
-      "Less noise. More intention. A considered shopping experience for everyday objects, built with performance at its core.",
-    stack: ["React", "Node.js", "Stripe"],
-    tone: "sage",
-    image: null,
+      "Less noise. More intention. A considered shopping experience for Industrial objects, built with performance at its core.",
+      stack: ["React", "Express", "MySQL"],
+      tone: "lilac",
+      image: "src/assets/thirumala.png",
+      link:"https://thirumala-castings.netlify.app/"
+    },
+    {
+      number: "03",
+      type: "INTERACTIVE BUILDING",
+      name: "KABANE JEWELLERS",
+      description:
+      "Turning ordinary forms into meaningful conversations. A dynamic form builder with conditional logic and real-time insights.",
+      stack: ["React", "Three.js","GSAP"],
+      tone: "sage",
+      image: "src/assets/kabnejewellers.png",
+      link:"https://kabanejewellers.netlify.app/"
   },
 ];
 
@@ -78,9 +81,9 @@ function ProjectCard({ project }) {
     >
       <a
         className={`projects__preview projects__preview--${project.tone}`}
-        href="#contact"
+        href={project.link} 
       >
-        <span className="projects__number">{project.number} /</span>
+        {/* <span className="projects__number">{project.number} /</span> */}
         {project.featured && (
           <span className="projects__featured">✦ FEATURED PROJECT</span>
         )}
