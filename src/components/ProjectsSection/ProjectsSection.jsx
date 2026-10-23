@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import "./ProjectsSection.css";
 
@@ -61,77 +61,34 @@ const PROJECTS = [
 ];
 
 const VISIBLE_BEHIND = 2;
-const SWAP_DURATION = 0.9;
-// Fraction of the swap at which the moving card changes layer.
-const SWAP_MIDPOINT = 0.45;
+const CARD_TRANSITION_DURATION = 0.54;
 
-// Resting pose for a card `offset` places behind the active one.
+// Every card has one predictable resting place in the deck. Keeping the poses
+// simple means a card can be re-targeted mid-animation without a visual jump.
 const stackPose = (offset) => {
   const depth = Math.min(offset, VISIBLE_BEHIND + 1);
   return {
-    y: -depth * 38,
-    scale: 1 - depth * 0.06,
+    y: -depth * 22,
+    scale: 1 - depth * 0.035,
     rotate: 0,
-    filter: `brightness(${1 - depth * 0.22})`,
-    opacity: offset > VISIBLE_BEHIND ? 0 : 1,
+    opacity: offset > VISIBLE_BEHIND ? 0 : 1 - depth * 0.12,
   };
 };
 
-// Pose at the swap midpoint: the leaving card drops below the deck (↓),
-// the arriving card lifts above it (↑).
-const swapMidpoint = (direction) =>
-  direction > 0
-    ? { y: 300, scale: 0.96, rotate: -4, filter: "brightness(1)", opacity: 1 }
-    : { y: -300, scale: 0.96, rotate: 3, filter: "brightness(1)", opacity: 1 };
-
-function cardMotion(offset, direction, total, reduceMotion) {
+function cardMotion(offset, total, reduceMotion) {
   const rest = stackPose(offset);
   const zIndex = total - offset;
-  const isSwapping =
-    !reduceMotion &&
-    ((direction > 0 && offset === total - 1) ||
-      (direction < 0 && offset === 0));
 
-  if (!isSwapping)
-    return {
-      animate: { ...rest, zIndex },
-      transition: reduceMotion
-        ? { duration: 0 }
-        : {
-            type: "spring",
-            stiffness: 220,
-            damping: 26,
-            zIndex: { duration: 0 },
-          },
-    };
-
-  // `null` starts each keyframe track from the card's current value,
-  // so clicking mid-animation continues smoothly.
-  const mid = swapMidpoint(direction);
-  const animate = Object.fromEntries(
-    Object.keys(rest).map((key) => [key, [null, mid[key], rest[key]]]),
-  );
-  const timing = {
-    duration: SWAP_DURATION,
-    times: [0, SWAP_MIDPOINT, 1],
-    ease: ["easeIn", "easeOut"],
-  };
-  // ↓ stays on top while dropping, then slides underneath the stack.
-  // ↑ stays behind while lifting, then lands on top.
-  animate.zIndex =
-    direction > 0
-      ? [total + 1, total + 1, zIndex, zIndex]
-      : [0, 0, total + 1, total + 1];
   return {
-    animate,
-    transition: {
-      ...timing,
-      zIndex: {
-        duration: SWAP_DURATION,
-        times: [0, SWAP_MIDPOINT, SWAP_MIDPOINT + 0.01, 1],
-        ease: "linear",
-      },
-    },
+    animate: { ...rest, zIndex },
+    transition: reduceMotion
+      ? { duration: 0 }
+      : {
+          duration: CARD_TRANSITION_DURATION,
+          ease: [0.22, 1, 0.36, 1],
+          opacity: { duration: 0.32, ease: "easeOut" },
+          zIndex: { duration: 0 },
+        },
   };
 }
 
@@ -248,13 +205,26 @@ function ProjectCard({ project, isActive }) {
 
 export default function ProjectsSection() {
   const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(0); // 1 for down, -1 for up
+  const [isAnimating, setIsAnimating] = useState(false);
+  const animationTimer = useRef();
   const reduceMotion = useReducedMotion();
   const total = PROJECTS.length;
 
+  useEffect(
+    () => () => window.clearTimeout(animationTimer.current),
+    [],
+  );
+
   const go = (step) => {
-    setDirection(step);
+    if (isAnimating) return;
     setActive((current) => (current + step + total) % total);
+    if (reduceMotion) return;
+
+    setIsAnimating(true);
+    animationTimer.current = window.setTimeout(
+      () => setIsAnimating(false),
+      CARD_TRANSITION_DURATION * 1000,
+    );
   };
 
   return (
@@ -284,7 +254,6 @@ export default function ProjectsSection() {
               const offset = (i - active + total) % total;
               const { animate, transition } = cardMotion(
                 offset,
-                direction,
                 total,
                 reduceMotion,
               );
@@ -309,6 +278,7 @@ export default function ProjectsSection() {
               className="projects__control"
               onClick={() => go(-1)}
               aria-label="Previous project"
+              disabled={isAnimating}
             >
               <ChevronIcon direction="up" />
             </button>
@@ -321,6 +291,7 @@ export default function ProjectsSection() {
               className="projects__control"
               onClick={() => go(1)}
               aria-label="Next project"
+              disabled={isAnimating}
             >
               <ChevronIcon direction="down" />
             </button>
