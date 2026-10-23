@@ -1,0 +1,294 @@
+.experience {
+  --experience-bg: #0a0b10;
+  --experience-text: #f4f5f8;
+  --experience-muted: #8c95a5;
+  --experience-line: rgba(255, 255, 255, 0.1);
+  --experience-blue: #3b82f6;
+  background: var(--experience-bg);
+  color: var(--experience-text);
+  font-family: "Inter", system-ui, sans-serif;
+  overflow: hidden;
+  scroll-margin-top: 24px;
+}
+.experience__inner {
+  width: min(1600px, calc(100% - 48px));
+  margin: auto;
+  padding: 42px 0 52px;
+}
+.experience__topline {
+  display: flex;
+  justify-content: space-between;
+  color: var(--experience-blue);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+}
+.experience__topline span:last-child {
+  color: var(--experience-muted);
+}
+.experience__layout {
+  display: grid;
+  grid-template-columns: 43% 57%;
+  gap: 34px;
+  margin-top: 42px;
+}
+.experience__intro {
+  position: relative;
+  min-height: 530px;
+}
+.experience__heading {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(50px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -2px;
+}
+.experience__heading span:last-child {
+  color: #7e8490;
+}
+.experience__lead {
+  margin: 28px 0 0;
+  color: var(--experience-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.experience__symbol {
+  position: absolute;
+  left: 0;
+  bottom: 42px;
+  color: rgba(255, 255, 255, 0.06);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 104px;
+  letter-spacing: -18px;
+}
+.experience__timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1px 1fr;
+  gap: 31px;
+}
+.experience__line {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  background: var(--experience-line);
+}
+.experience__line-progress {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 1px;
+  height: 100%;
+  background: var(--experience-blue);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.experience__marker {
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--experience-bg);
+  border-radius: 50%;
+  background: var(--experience-blue);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.8);
+  transform: translateX(-50%);
+}
+.experience__entries {
+  display: grid;
+  gap: 42px;
+  padding-bottom: 4px;
+}
+.experience__entry {
+  position: relative;
+}
+.experience__node {
+  position: absolute;
+  left: -37px;
+  top: 3px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--experience-bg);
+  border-radius: 50%;
+  background: #727986;
+}
+.experience__entry:first-child .experience__node {
+  background: var(--experience-blue);
+}
+.experience__period {
+  margin-bottom: 16px;
+  color: var(--experience-muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.experience__period b {
+  margin-left: 13px;
+  padding: 5px 8px;
+  border: 1px solid rgba(59, 130, 246, 0.65);
+  border-radius: 3px;
+  color: var(--experience-blue);
+  font-size: 8px;
+  font-weight: 400;
+}
+.experience__entry h3 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.experience__place {
+  margin: 9px 0 22px;
+  color: var(--experience-blue);
+  font-size: 14px;
+}
+.experience__summary {
+  max-width: 760px;
+  margin: 0;
+  color: var(--experience-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.experience__entry ul {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #aab1bd;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.experience__entry li {
+  position: relative;
+  padding-left: 18px;
+}
+.experience__entry li:before {
+  position: absolute;
+  left: 0;
+  color: #778291;
+  content: "•";
+}
+.experience__entry-separator {
+  display: block;
+  height: 1px;
+  margin-top: 32px;
+  background: linear-gradient(90deg, var(--experience-line), transparent);
+}
+@media (max-width: 850px) {
+  .experience__layout {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+  .experience__intro {
+    min-height: 0;
+    padding-bottom: 70px;
+  }
+  .experience__symbol {
+    bottom: 0;
+  }
+  .experience__timeline {
+    grid-template-columns: 1px 1fr;
+  }
+  .experience__entries {
+    gap: 32px;
+  }
+}
+@media (max-width: 560px) {
+  .experience__inner {
+    width: min(100% - 40px, 650px);
+    padding: 38px 0;
+  }
+  .experience__topline span:last-child {
+    display: none;
+  }
+  .experience__heading {
+    font-size: 48px;
+  }
+  .experience__lead {
+    font-size: 14px;
+  }
+  .experience__timeline {
+    gap: 24px;
+  }
+  .experience__node {
+    left: -30px;
+  }
+  .experience__entry h3 {
+    font-size: 23px;
+  }
+  .experience__summary {
+    font-size: 14px;
+  }
+  .experience__entry ul {
+    font-size: 13px;
+  }
+}
+
+.experience__stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+  border-top: 1px solid var(--experience-line);
+  border-bottom: 1px solid var(--experience-line);
+}
+.experience__stage {
+  min-height: 166px;
+  padding: 22px 28px;
+  border-left: 1px solid var(--experience-line);
+}
+.experience__stage:first-child {
+  border-left: 0;
+}
+.experience__stage > span {
+  color: var(--experience-blue);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.experience__stage h3 {
+  margin: 15px 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.experience__stage p {
+  max-width: 390px;
+  margin: 0;
+  color: var(--experience-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.experience__layout {
+  grid-template-columns: 35% 65%;
+  margin-top: 38px;
+}
+.experience__intro {
+  min-height: 720px;
+}
+@media (max-width: 850px) {
+  .experience__stages {
+    grid-template-columns: 1fr;
+  }
+  .experience__stage {
+    min-height: 0;
+    border-left: 0;
+    border-top: 1px solid var(--experience-line);
+  }
+  .experience__stage:first-child {
+    border-top: 0;
+  }
+  .experience__intro {
+    min-height: 0;
+  }
+}
+@media (max-width: 560px) {
+  .experience__stage {
+    padding: 20px 0;
+  }
+}
