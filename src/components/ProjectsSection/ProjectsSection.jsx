@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import "./ProjectsSection.css";
+import heroImg from "../../assets/3dhero.png";
+import thirumalaImg from "../../assets/thirumala.png";
+import kabneImg from "../../assets/kabnejewellers.png";
+import twogoodImg from "../../assets/twogood.png";
+import samarthImg from "../../assets/samarthjewellers.png";
 
 const PROJECTS = [
   {
@@ -11,7 +16,7 @@ const PROJECTS = [
     stack: ["HTML", "CSS", "GSAP", "LOCOMOTIVE", "THREE.JS"],
     tone: "blue",
     featured: true,
-    image: "src/assets/3dhero.png",
+    image: heroImg,
     link: "https://3d-animation-rudresh.netlify.app/",
   },
   {
@@ -22,7 +27,7 @@ const PROJECTS = [
       "Less noise. More intention. A considered shopping experience for Industrial objects, built with performance at its core.",
     stack: ["React", "Express", "MySQL"],
     tone: "lilac",
-    image: "src/assets/thirumala.png",
+    image: thirumalaImg,
     link: "https://thirumala-castings.netlify.app/",
   },
   {
@@ -33,7 +38,7 @@ const PROJECTS = [
       "Turning ordinary forms into meaningful conversations. A dynamic form builder with conditional logic and real-time insights.",
     stack: ["React", "Three.js", "GSAP"],
     tone: "sage",
-    image: "src/assets/kabnejewellers.png",
+    image: kabneImg,
     link: "https://kabanejewellers.netlify.app/",
   },
   {
@@ -44,7 +49,7 @@ const PROJECTS = [
       "Turning ordinary forms into meaningful conversations. A dynamic form builder with conditional logic and real-time insights.",
     stack: ["HTML", "CSS", "GSAP"],
     tone: "sage",
-    image: "src/assets/twogood.png",
+    image: twogoodImg,
     link: "https://twogood-website-rudresh21.netlify.app/",
   },
   {
@@ -55,7 +60,7 @@ const PROJECTS = [
       "Turning ordinary forms into meaningful conversations. A dynamic form builder with conditional logic and real-time insights.",
     stack: ["React-Native", "REST APIs"],
     tone: "sage",
-    image: "src/assets/samarthjewellers.png",
+    image: samarthImg,
     link: "https://play.google.com/store/apps/details?id=com.shrisamarthjewellers.app",
   },
 ];
