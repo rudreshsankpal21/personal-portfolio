@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import DitherVeil from "../DitherVeil/DitherVeil";
+import AnimatedButton from "../Buttons/AnimatedButton";
 import "./Hero.css";
 
 gsap.registerPlugin(useGSAP);
@@ -269,9 +270,13 @@ export default function Hero() {
             ))}
           </nav>
 
-          <a href="mailto:rudreshsankpal21@gmail.com" className="pf-talk">
+          <AnimatedButton
+            href="mailto:rudreshsankpal21@gmail.com"
+            fontSize="14px"
+            style={{ padding: "0.8em 1.2em" }}
+          >
             Let&apos;s talk <Arrow size={12} />
-          </a>
+          </AnimatedButton>
         </div>
       </header>
 
