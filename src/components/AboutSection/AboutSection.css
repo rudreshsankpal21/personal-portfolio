@@ -151,8 +151,9 @@
   font-weight: 400;
   letter-spacing: -2px;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-.about-section__stat-value span {
+.about-section__stat-value span:not(.about-section__stat-number) {
   color: var(--about-blue);
 }
 .about-section__stat-label {

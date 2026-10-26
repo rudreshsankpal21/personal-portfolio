@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./AboutSection.css";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const STATS = [
   { value: "8", suffix: "+", label: "Projects brought to life" },
@@ -14,6 +15,37 @@ const STATS = [
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+        return;
+
+      // Count each stat up from 0 once the stats row scrolls into view.
+      gsap.utils
+        .toArray(".about-section__stat-number")
+        .forEach((number, index) => {
+          const counter = { value: 0 };
+          number.textContent = "0";
+
+          gsap.to(counter, {
+            value: Number(number.dataset.value),
+            duration: 2,
+            delay: index * 0.12,
+            ease: "power3.out",
+            onUpdate: () => {
+              number.textContent = Math.round(counter.value);
+            },
+            scrollTrigger: {
+              trigger: ".about-section__stats",
+              start: "top 85%",
+              once: true,
+            },
+          });
+        });
+    },
+    { scope: sectionRef },
+  );
 
   return (
     <section className="about-section" id="about" ref={sectionRef}>
@@ -64,7 +96,12 @@ export default function AboutSection() {
           {STATS.map((stat) => (
             <div className="about-section__stat" key={stat.label}>
               <p className="about-section__stat-value">
-                {stat.value}
+                <span
+                  className="about-section__stat-number"
+                  data-value={stat.value}
+                >
+                  {stat.value}
+                </span>
                 <span>{stat.suffix}</span>
               </p>
               <p className="about-section__stat-label">{stat.label}</p>
