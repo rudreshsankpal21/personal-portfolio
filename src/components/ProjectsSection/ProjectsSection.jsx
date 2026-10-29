@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 import "./ProjectsSection.css";
 import heroImg from "../../assets/3dhero.png";
 import thirumalaImg from "../../assets/thirumala.png";
@@ -66,6 +71,11 @@ const PROJECTS = [
 ];
 
 const VISIBLE_BEHIND = 2;
+const TILT = 7;
+
+const canHover = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const CARD_TRANSITION_DURATION = 0.54;
 
 // Every card has one predictable resting place in the deck. Keeping the poses
@@ -155,12 +165,37 @@ function Preview({ project }) {
   );
 }
 
-function ProjectCard({ project, isActive }) {
+function ProjectCard({ project, isActive, reduceMotion }) {
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 160, damping: 18 });
+  const springY = useSpring(rotateY, { stiffness: 160, damping: 18 });
+
+  // Tilt toward the pointer and move the sheen with it (front card only).
+  const handleMove = (event) => {
+    const el = event.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    el.style.setProperty("--my", `${event.clientY - rect.top}px`);
+    if (!isActive || reduceMotion || !canHover()) return;
+    const px = (event.clientX - rect.left) / rect.width - 0.5;
+    const py = (event.clientY - rect.top) / rect.height - 0.5;
+    rotateY.set(px * TILT);
+    rotateX.set(-py * TILT);
+  };
+  const handleLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
   return (
-    <article
+    <motion.article
       className="projects__card"
       aria-hidden={!isActive}
       inert={!isActive ? "" : undefined}
+      style={{ rotateX: springX, rotateY: springY, transformPerspective: 1400 }}
+      onPointerMove={handleMove}
+      onPointerLeave={handleLeave}
     >
       <div className="projects__content">
         <div className="projects__head">
@@ -204,7 +239,7 @@ function ProjectCard({ project, isActive }) {
       >
         <Preview project={project} />
       </a>
-    </article>
+    </motion.article>
   );
 }
 
@@ -272,7 +307,11 @@ export default function ProjectsSection() {
                   animate={animate}
                   transition={transition}
                 >
-                  <ProjectCard project={project} isActive={i === active} />
+                  <ProjectCard
+                    project={project}
+                    isActive={i === active}
+                    reduceMotion={reduceMotion}
+                  />
                 </motion.div>
               );
             })}
