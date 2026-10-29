@@ -221,17 +221,22 @@ function Entry({ item, index, active, onActive, reduceMotion }) {
 
 function HeadingLine({ children, className, delay }) {
   return (
-    <span className={`experience__heading-mask ${className}`}>
+    // The mask is observed, not the line: the line starts fully clipped by
+    // the mask, so it would never count as "in view" on its own.
+    <motion.span
+      className={`experience__heading-mask ${className}`}
+      initial="hidden"
+      whileInView="shown"
+      viewport={{ once: true, amount: 0.6 }}
+    >
       <motion.span
         className="experience__heading-line"
-        initial={{ y: "110%" }}
-        whileInView={{ y: "0%" }}
-        viewport={{ once: true, amount: 0.8 }}
+        variants={{ hidden: { y: "110%" }, shown: { y: "0%" } }}
         transition={{ duration: 1, delay, ease: EASE }}
       >
         {children}
       </motion.span>
-    </span>
+    </motion.span>
   );
 }
 

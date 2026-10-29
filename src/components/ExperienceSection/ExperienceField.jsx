@@ -86,7 +86,7 @@ export default function ExperienceField({ className }) {
         uRes: { value: [1, 1] },
         uMouse: { value: [0.5, 0.5] },
         uProgress: { value: 0 },
-        uColor: { value: [0.231, 0.51, 0.965] },
+        uColor: { value: [0.082, 0.345, 0.788] },
       },
     });
     const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
