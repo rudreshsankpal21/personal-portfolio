@@ -74,7 +74,7 @@ const createSkillCard = ({ title, description, icon, items }) => {
         `<text x="380" y="${contentStart + 260 + index * 42}" text-anchor="middle" class="item">•  ${escapeXml(item)}</text>`,
     )
     .join("");
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 980"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#181b24"/><stop offset="1" stop-color="#0b0c10"/></linearGradient></defs><rect width="760" height="980" rx="20" fill="url(#bg)"/><rect x="1" y="1" width="758" height="978" rx="19" fill="none" stroke="#314363"/><text x="380" y="${contentStart - 50}" text-anchor="middle" class="icon">${icon}</text><text x="680" y="${contentStart - 50}" class="arrow">↗</text><text x="380" y="${contentStart + 38}" text-anchor="middle" class="title">${escapeXml(title)}</text><text x="380" y="${contentStart + 100}" text-anchor="middle" class="description">${escapeXml(description)}</text><line x1="120" y1="${contentStart + 160}" x2="640" y2="${contentStart + 160}" stroke="#293040"/>${list}<text x="380" y="${contentStart + 180 + items.length * 52}" text-anchor="middle" class="footer"></text><style>.icon{fill:#4f91ff;font:52px monospace}.arrow{fill:#98a3b6;font:32px Arial}.title{fill:#f5f7fb;font:54px Georgia,serif}.description{fill:#9ca7b9;font:28px Arial,sans-serif}.item{fill:#c0c8d6;font:28px Arial,sans-serif}.footer{fill:#55729e;font:14px monospace;letter-spacing:3px}</style></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 980"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d1220"/><stop offset="1" stop-color="#05060a"/></linearGradient><linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4a7fdc"/><stop offset=".3" stop-color="#1a3a73"/><stop offset="1" stop-color="#05070c"/></linearGradient></defs><rect width="760" height="980" rx="20" fill="url(#bg)"/><rect x="1" y="1" width="758" height="978" rx="19" fill="none" stroke="url(#edge)" stroke-width="2"/><line x1="40" y1="2.5" x2="720" y2="2.5" stroke="#ffffff" stroke-opacity=".14"/><text x="380" y="${contentStart - 50}" text-anchor="middle" class="icon">${icon}</text><text x="680" y="${contentStart - 50}" class="arrow">↗</text><text x="380" y="${contentStart + 38}" text-anchor="middle" class="title">${escapeXml(title)}</text><text x="380" y="${contentStart + 100}" text-anchor="middle" class="description">${escapeXml(description)}</text><line x1="120" y1="${contentStart + 160}" x2="640" y2="${contentStart + 160}" stroke="#1c2230"/>${list}<text x="380" y="${contentStart + 180 + items.length * 52}" text-anchor="middle" class="footer"></text><style>.icon{fill:#5b8de0;font:52px monospace}.arrow{fill:#98a3b6;font:32px Arial}.title{fill:#f5f7fb;font:54px Georgia,serif}.description{fill:#9ca7b9;font:28px Arial,sans-serif}.item{fill:#c0c8d6;font:28px Arial,sans-serif}.footer{fill:#d4ff24;font:14px monospace;letter-spacing:3px}</style></svg>`;
   return {
     src: `data:image/svg+xml,${encodeURIComponent(svg)}`,
     alt: `${title} skills`,
@@ -152,9 +152,11 @@ export default function SkillsSection() {
             snap
             momentum={0.72}
             depthFade={0.42}
-            fadeColor="#0a0b10"
+            fadeColor="#030407"
             cornerRadius={18}
             focusScale={2.15}
+            compactBelow={700}
+            compactOverscan={2.4}
             captions
             className="toolkit__circular-carousel"
           />
