@@ -1,17 +1,84 @@
+:root {
+  /* primary — black */
+  --color-primary: #030407;
+  --color-surface: #07080c;
+  --color-surface-2: #0b0d12;
+
+  /* secondary — cobalt blue */
+  --color-secondary: #1558c9;
+  --color-secondary-hover: #2367dc;
+  --color-secondary-light: #5b8de0; /* legible tint for small text on black */
+  --color-secondary-rgb: 21, 88, 201;
+
+  /* markers — acid lime */
+  --color-marker: #d4ff24;
+  --color-marker-rgb: 212, 255, 36;
+  --color-on-marker: #030407;
+
+  /* neutrals */
+  --color-text: #f4f5f7;
+  --color-muted: #8b919c;
+  --color-dim: #5d626c;
+  --color-line: rgba(255, 255, 255, 0.08);
+
+  /* depth — tactile 3D */
+  --surface-raised: linear-gradient(180deg, #11141b 0%, #08090d 100%);
+  --surface-sunken: linear-gradient(180deg, #020305 0%, #07080c 100%);
+  --face-secondary: linear-gradient(180deg, #2a6de0 0%, #1558c9 100%);
+  --extrude-dark: #000;
+  --extrude-secondary: #0a3584;
+  --bevel: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --bevel-strong: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  --shadow-raised:
+    0 1px 0 rgba(0, 0, 0, 0.9), 0 10px 20px -10px rgba(0, 0, 0, 0.9),
+    0 28px 56px -28px rgba(0, 0, 0, 0.85);
+  --shadow-float:
+    0 2px 0 rgba(0, 0, 0, 0.9), 0 24px 48px -16px rgba(0, 0, 0, 0.95),
+    0 60px 100px -40px rgba(0, 0, 0, 0.9);
+  --shadow-inset:
+    inset 0 2px 5px rgba(0, 0, 0, 0.75), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  --ease-press: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: dark;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* clip (not hidden) so the window stays the scroller on mobile */
 html,
 body {
-  height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  min-height: 100%;
+  overflow-x: clip;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
   /* scroll-padding-top: 24px; */
+}
+
+::selection {
+  background: var(--color-marker);
+  color: var(--color-on-marker);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary-light);
+  outline-offset: 3px;
 }
