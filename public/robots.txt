@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rudresh-portfolio-web.vercel.app/sitemap.xml
