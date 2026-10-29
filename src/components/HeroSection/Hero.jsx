@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import DitherVeil from "../DitherVeil/DitherVeil";
@@ -202,6 +202,20 @@ const TECH = [
 
 export default function Hero() {
   const heroRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const close = (event) => event.key === "Escape" && setMenuOpen(false);
+    const desktop = window.matchMedia("(min-width: 1101px)");
+    const reset = () => desktop.matches && setMenuOpen(false);
+    window.addEventListener("keydown", close);
+    desktop.addEventListener("change", reset);
+    return () => {
+      window.removeEventListener("keydown", close);
+      desktop.removeEventListener("change", reset);
+    };
+  }, [menuOpen]);
 
   useGSAP(
     () => {
@@ -277,7 +291,40 @@ export default function Hero() {
           >
             Let&apos;s talk <Arrow size={12} />
           </AnimatedButton>
+
+          <button
+            type="button"
+            className={`pf-burger${menuOpen ? " is-open" : ""}`}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="pf-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
+
+        <nav
+          id="pf-menu"
+          className={`pf-menu${menuOpen ? " is-open" : ""}`}
+          aria-label="Mobile"
+          inert={!menuOpen ? "" : undefined}
+        >
+          {NAV.map((l, i) => (
+            <a
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              className="pf-menu__item"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="pf-menu__index">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {l}
+            </a>
+          ))}
+        </nav>
       </header>
 
       {/* ───── HERO ───── */}
@@ -292,7 +339,7 @@ export default function Hero() {
             pixelSize={3}
             levels={4}
             palette="rgb"
-            inkColor="#0a0b10"
+            inkColor="#030407"
             paperColor="#ffffff"
             contrast={1.15}
             revealRadius={220}
