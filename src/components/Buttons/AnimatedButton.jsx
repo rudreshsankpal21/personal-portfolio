@@ -19,10 +19,12 @@ const StyledWrapper = styled.div`
     --c: #fff;
    /* text color */
     background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
-      #3B82F6;
+      #1558C9;
    /* background color */
     color: #0000;
     border: none;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 0 #fff4, 0 4px 0 #0A3584, 0 14px 24px -10px #1558C9aa;
     transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
     text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
       calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
@@ -39,7 +41,8 @@ const StyledWrapper = styled.div`
   .animated-btn:active {
     text-shadow: none;
     color: var(--c);
-    box-shadow: inset 0 0 9e9q #0005;
+    box-shadow: inset 0 0 9e9q #0005, 0 0 0 #0A3584;
+    translate: 0 4px;
     transition: 0s;
   }
 
