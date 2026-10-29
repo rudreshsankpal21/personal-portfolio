@@ -1,9 +1,11 @@
 .contact {
-  --contact-bg: #0a0b10;
-  --contact-text: #f4f5f8;
-  --contact-muted: #8c95a5;
-  --contact-line: rgba(255, 255, 255, 0.11);
-  --contact-blue: #3b82f6;
+  --contact-bg: var(--color-primary);
+  --contact-text: var(--color-text);
+  --contact-muted: var(--color-muted);
+  --contact-line: rgba(255, 255, 255, 0.1);
+  --contact-blue: var(--color-secondary);
+  --contact-blue-text: var(--color-secondary-light);
+  --contact-lime: var(--color-marker);
   background: var(--contact-bg);
   color: var(--contact-text);
   font-family: "Inter", system-ui, sans-serif;
@@ -17,7 +19,7 @@
 .contact__topline {
   display: flex;
   justify-content: space-between;
-  color: var(--contact-blue);
+  color: var(--contact-lime);
   font-family: "JetBrains Mono", monospace;
   font-size: 10px;
   letter-spacing: 1.5px;
@@ -48,8 +50,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #27d7a1;
-  box-shadow: 0 0 10px #27d7a1;
+  background: var(--contact-lime);
+  box-shadow: 0 0 10px rgba(var(--color-marker-rgb), 0.7);
 }
 .contact h2 {
   margin: 0;
@@ -67,7 +69,7 @@
   position: absolute;
   top: 94px;
   right: 92px;
-  color: var(--contact-blue);
+  color: var(--contact-lime);
   font-size: 59px;
   line-height: 1;
 }
@@ -94,7 +96,7 @@
 }
 .contact__email:hover {
   border-color: var(--contact-blue);
-  color: var(--contact-blue);
+  color: var(--contact-blue-text);
 }
 .contact__email span,
 .contact__socials span {
@@ -115,7 +117,7 @@
   transition: color 0.2s;
 }
 .contact__socials a:hover {
-  color: var(--contact-blue);
+  color: var(--contact-blue-text);
 }
 .contact__socials svg {
   width: 17px;
@@ -131,6 +133,14 @@
   grid-template-columns: 1fr 1fr;
   gap: 24px 20px;
   align-content: start;
+  padding: 30px;
+  border: 1px solid var(--contact-line);
+  border-radius: 20px;
+  background: var(--surface-raised);
+  box-shadow:
+    var(--bevel),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    var(--shadow-float);
 }
 .contact__form label {
   display: grid;
@@ -143,9 +153,11 @@
 .contact__form textarea {
   width: 100%;
   border: 1px solid var(--contact-line);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  background: var(--surface-sunken);
   color: var(--contact-text);
+  /* recessed field */
+  box-shadow: var(--shadow-inset);
   font: inherit;
   font-size: 13px;
   outline: none;
@@ -165,11 +177,13 @@
 .contact__form input:focus,
 .contact__form textarea:focus {
   border-color: var(--contact-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  box-shadow:
+    var(--shadow-inset),
+    0 0 0 3px rgba(var(--color-secondary-rgb), 0.22);
 }
 .contact__form input::placeholder,
 .contact__form textarea::placeholder {
-  color: #657083;
+  color: var(--color-dim);
 }
 .contact__message {
   grid-column: 1/-1;
@@ -182,21 +196,38 @@
   height: 52px;
   padding: 0 23px;
   border: 0;
-  border-radius: 5px;
-  background: var(--contact-blue);
+  border-radius: 8px;
+  background: var(--face-secondary);
   color: white;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   font: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(31, 93, 219, 0.25);
+  box-shadow:
+    var(--bevel-strong),
+    0 4px 0 var(--extrude-secondary),
+    0 16px 30px -10px rgba(var(--color-secondary-rgb), 0.65);
   transition:
-    transform 0.25s ease,
+    transform 0.2s var(--ease-press),
+    box-shadow 0.2s var(--ease-press),
     background 0.25s ease;
 }
 .contact__form button:hover {
-  background: #4b8dff;
+  background: linear-gradient(180deg, #3a7aea 0%, var(--color-secondary-hover) 100%);
   transform: translateY(-2px);
+  box-shadow:
+    var(--bevel-strong),
+    0 6px 0 var(--extrude-secondary),
+    0 22px 38px -12px rgba(var(--color-secondary-rgb), 0.75);
+}
+.contact__form button:active {
+  transform: translateY(4px);
+  box-shadow:
+    var(--bevel-strong),
+    0 0 0 var(--extrude-secondary),
+    0 6px 14px -6px rgba(var(--color-secondary-rgb), 0.6);
+  transition-duration: 0.06s;
 }
 .contact__form button span {
   font-size: 20px;
@@ -221,14 +252,16 @@
   }
 }
 @media (max-width: 520px) {
-  .contact__topline span:last-child {
-    display: none;
+  .contact__topline {
+    gap: 16px;
+    font-size: 9px;
   }
   .contact__inner {
     padding: 40px 0;
   }
   .contact__form {
     grid-template-columns: 1fr;
+    padding: 22px 18px;
   }
   .contact__message,
   .contact__form button,
@@ -236,9 +269,29 @@
     grid-column: auto;
   }
   .contact__email {
-    font-size: 19px;
+    gap: 12px;
+    font-size: clamp(16px, 5.2vw, 20px);
+    overflow-wrap: anywhere;
+  }
+  .contact h2 {
+    font-size: clamp(44px, 14vw, 54px);
+  }
+  .contact__spark {
+    top: 70px;
+    right: 0;
+    font-size: 44px;
   }
   .contact__socials {
     gap: 17px;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact__topline > :first-child {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .contact__topline > :last-child {
+    text-align: right;
   }
 }
