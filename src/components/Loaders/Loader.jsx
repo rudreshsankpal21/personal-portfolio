@@ -110,7 +110,7 @@ const StyledWrapper = styled.div`
     z-index: 2;
     width: calc(100% - 12px);
     height: calc(100% - 18px);
-    background: linear-gradient(45deg, #3ba9ff, #c82aff);
+    background: linear-gradient(45deg, #1558c9, #0a2c66);
   }
   .macbook__display::before {
     content: "";

@@ -91,9 +91,9 @@ const StyledWrapper = styled.div`
     inset: 0;
     border-radius: 50%;
     border: 1px solid transparent;
-    border-top-color: rgba(34, 211, 238, 0.8);
-    border-right-color: rgba(34, 211, 238, 0.2);
-    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+    border-top-color: rgba(21, 88, 201, 0.9);
+    border-right-color: rgba(21, 88, 201, 0.25);
+    box-shadow: 0 0 15px rgba(21, 88, 201, 0.6);
     z-index: 2;
     pointer-events: none;
   }
@@ -111,9 +111,9 @@ const StyledWrapper = styled.div`
     inset: 0;
     border-radius: 50%;
     border: 1px solid transparent;
-    border-left-color: rgba(168, 85, 247, 0.8);
-    border-bottom-color: rgba(168, 85, 247, 0.2);
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    border-left-color: rgba(212, 255, 36, 0.8);
+    border-bottom-color: rgba(212, 255, 36, 0.2);
+    box-shadow: 0 0 15px rgba(212, 255, 36, 0.35);
     z-index: 2;
     pointer-events: none;
   }
@@ -284,8 +284,8 @@ const StyledWrapper = styled.div`
     border-radius: 50%;
     box-shadow:
       0 0 5px #fff,
-      0 0 15px #22d3ee,
-      0 0 30px #a855f7;
+      0 0 15px #1558c9,
+      0 0 30px #d4ff24;
     z-index: 10;
     animation: heartbeat-core 4s ease-in-out infinite;
   }
@@ -316,7 +316,7 @@ const StyledWrapper = styled.div`
       opacity: 1;
       box-shadow:
         0 0 10px #fff,
-        0 0 25px #22d3ee;
+        0 0 25px #1558c9;
     }
 
     20% {
@@ -344,7 +344,7 @@ const StyledWrapper = styled.div`
       opacity: 1;
       box-shadow:
         0 0 10px #fff,
-        0 0 25px #22d3ee;
+        0 0 25px #1558c9;
     }
 
     45% {
@@ -372,7 +372,7 @@ const StyledWrapper = styled.div`
       opacity: 1;
       box-shadow:
         0 0 10px #fff,
-        0 0 25px #22d3ee;
+        0 0 25px #1558c9;
     }
 
     70% {
@@ -405,7 +405,7 @@ const StyledWrapper = styled.div`
       opacity: 1;
       box-shadow:
         0 0 15px #fff,
-        0 0 40px #a855f7;
+        0 0 40px #d4ff24;
     }
 
     90% {
