@@ -212,6 +212,8 @@ const CircularCarousel = ({
   cornerRadius = 12,
   captions = false,
   focusScale = 1,
+  compactBelow = 0,
+  compactOverscan = 1,
   onChange,
   onItemClick,
   className = "",
@@ -325,6 +327,8 @@ const CircularCarousel = ({
     depthFade: clamp(depthFade, 0, 1),
     captions,
     focusScale: clamp(focusScale, 1, 3),
+    compactBelow,
+    compactOverscan: Math.max(1, compactOverscan),
     reduced,
   };
   const settingsRef = useRef(settings);
@@ -425,7 +429,10 @@ const CircularCarousel = ({
       const rect = root.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
       const room = s.captions ? CAPTION_SPACE : 0;
-      const width = rect.width * 0.94;
+      // On narrow containers let the ring run past the edges so the
+      // front card stays large instead of shrinking the whole ring.
+      const overscan = rect.width < s.compactBelow ? s.compactOverscan : 1;
+      const width = rect.width * 0.94 * overscan;
       const height = (rect.height - room) * 0.92;
       const P = s.perspective;
       let minX = Infinity;
